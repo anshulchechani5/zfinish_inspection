@@ -1,0 +1,55 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog id="DFoourTable"
+		noDataText="Operator Name Not Found"
+		title="Select Operator Name"
+		search=".handleSearch"
+		searchPlaceholder="Search Operator Name"
+		confirm=".handleValueHelpCloseforDataEntryOperator"
+		cancel=".handleValueHelpCloseforDataEntryOperator"
+		showClearButton="true"
+		items="{
+			path : '/OPTNAME'
+		}">
+		<ColumnListItem id="DFocolumnlistitem" selected="{selected}">
+			<cells>
+				<ObjectIdentifier id="DFoOif1" title="{Bukrs}"/>
+				<ObjectIdentifier id="DFoOif2" title="{Plant}"/>
+				<ObjectIdentifier id="DFoOif3" title="{Empcode}"/>
+				<ObjectIdentifier id="DFoOif4" title="{Empname}"/>
+				<ObjectIdentifier id="DFoOif5" title="{Deptname}"/>
+				<!-- <Text text="{SupplierName}" />
+				<Text text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column id="DFoColumn1" width="6rem">
+				<header>
+					<Text id="DFoText1" text="Bukrs" />
+				</header>
+			</Column>
+			<Column id="DFoColumn2" width="6rem">
+				<header>
+					<Text id="DFoText2" text="Plant" />
+				</header>
+			</Column>
+			<Column id="DFoColumn3" width="6rem" >
+                <header>
+                    <Text id="DFoText3" text="Empcode" />
+                </header>
+            </Column>
+                
+			<Column id="DFoColumn4" width="6rem">
+				<header>
+					<Text id="vText4" text="Empname" />
+				</header>
+			</Column>
+			<Column id="DFoColumn5" width="6rem">
+				<header>
+					<Text id="DFoText5" text="Deptname" />
+				</header>
+			</Column>
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>

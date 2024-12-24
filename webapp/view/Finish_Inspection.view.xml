@@ -1,0 +1,203 @@
+<mvc:View controllerName="zfinishinspection.controller.Finish_Inspection"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:T="sap.ui.table"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Panel id="Panel1" class="sapUiSmallMarginBottom">
+                <!-- <f:SimpleForm id="FirstSimpleForm" layout="ResponsiveGridLayout" columnsL="4" columnsXL="4" columnsM="4" editable="true">
+                    <f:content>
+                        <core:Title id="Coretitle1"/>
+                        <VBox id="FirstVbox">
+                            <Label id="PoDt" design="Bold" text="Posting Date" />
+                            <DatePicker editable="true" id="PostingDate" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" width="100%" />
+                            <Label id="OpertorLab" design="Bold" text="Operator Name" />
+                            <Input id="OperatorName" width="100%" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="OperatorNamehandlef4" />
+                            <Label id="FinishLab" design="Bold" text="Finish MC No." />
+                            <Input id="FinishMc" width="100%" value="" />
+                        </VBox>
+                        <core:Title id="Coretitle2"/>
+                        <VBox id="SecondVbox">
+                            <Label id="TrollyLab" design="Bold" text="Trolly Number" />
+                            <Input id="TrollyNumber" width="100%" value="" />
+                            <Label id="HeaderremarkLab" design="Bold" text="Header Remark" />
+                            <Input id="HeaderRemark" width="100%" value="" />
+                            <Label id="DataLab" design="Bold" text="Data Entry Operator" />
+                            <Input id="DataEntryOperatorID" width="100%" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="DataEntryOperatorhandlef4" />
+            
+
+                        </VBox>
+                        <core:Title id="Coretitle4"/>
+
+                        <VBox id="ThirdVbox">
+                            <Label id="StocLab" design="Bold" text="Stoc. Loc." />
+                            <Input id="StocLoc" width="100%" value="" />
+                            <Label id="ReceivingLab" design="Bold" text="Receiving Sloc." />
+                            <Input id="ReceivingSloc" width="100%" value="" />
+                            <Label id="PiecesLab" design="Bold" text="No. of Pieces" />
+                            <Input id="NoOfPieces" width="100%" value="" />
+                        </VBox>
+                        <core:Title id="Coretitle5"/>
+                        <VBox id="ForthVbox">
+                            <Label id="TotalLab" design="Bold" text="Total Qty" />
+                            <Input id="TotalQty" width="100%" value="" />
+                            <Label id="ShiftLab" design="Bold" text="Shift" />
+                            <ComboBox id="Shift" change="" width="100%" selectedKey="Option1">
+                                <items>
+                                    <core:Item key= "Option1" id="com1" text="A"/>
+                                    <core:Item key= "Option2" id="com2" text="B" />
+                                    <core:Item key= "Option3" id="com3" text="C" />
+                                </items>
+                            </ComboBox>
+                            <Label id="SetLab" design="Bold" text="Set No" />
+                            <Input id="SetNumber" width="100%" submit="SetNumbersFunction" />
+
+                        </VBox>
+
+                    </f:content>
+                </f:SimpleForm> -->
+                <f:SimpleForm id="FirstSimpleForm" layout="ResponsiveGridLayout" columnsL="3" columnsXL="3" columnsM="3" editable="true">
+                    <f:content>
+                        <core:Title id="Coretitle1"/>
+                        <Label id="PoDt" design="Bold" text="Posting Date" />
+                        <DatePicker editable="true" id="PostingDate" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" width="100%" liveChange="ValidateErrorFun" />
+                        <Label id="OpertorLab" design="Bold" text="Operator Name" required="true" />
+                        <ComboBox items="{path : '/OPTNAME',length : '100000'}" showSecondaryValues="true" change="operatorname"  id="OperatorName">
+                            <items>
+                                <core:ListItem id="a2" text="{Empname}" key="{Empname}" additionalText="{Deptname}"/>
+                            </items>
+                        </ComboBox>
+                        <!-- <Input id="OperatorName" width="100%" showSuggestion="true" maxLength="40" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="OperatorNamehandlef4" /> -->
+                        <Label id="FinishLab" design="Bold" text="Finish MC No." required="true" />
+                        <Input id="FinishMc" width="100%" maxLength="10" value="" liveChange="ValidateErrorFun"/>
+                        <Label id="TrollyLab" design="Bold" text="Trolly Number" required="true" />
+                        <Input id="TrollyNumber" width="100%" value="" type="Number" liveChange="ValidateErrorFun"/>
+                        <core:Title id="Coretitle2"/>
+                        <Label id="HeaderremarkLab" design="Bold" text="Header Remark"  required="true"/>
+                        <Input id="HeaderRemark" width="100%" maxLength="40" value="" liveChange="ValidateErrorFun"/>
+                        <Label id="DataLab" design="Bold" text="Data Entry Operator" />
+                        <ComboBox items="{path : '/OPTNAME',length : '100000'}" showSecondaryValues="true" change="operatorname" id="DataEntryOperatorID">
+                            <items>
+                                <core:ListItem id="a3" text="{Empname}" key="{Empname}" additionalText="{Deptname}"/>
+                            </items>
+                        </ComboBox>
+                        <!-- <Input id="DataEntryOperatorID" width="100%" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="DataEntryOperatorhandlef4" /> -->
+                        <Label id="StocLab" design="Bold" text="Stoc. Loc." required="true" />
+                        <ComboBox items="{path : '/storage_loc1',length : '100000'}" showSecondaryValues="true" change="ValidateErrorFun" id="StocLoc">
+                            <items>
+                                <core:ListItem id="a4" text="{StorageLocation}" key="{StorageLocation}" additionalText="{StorageLocationName}"/>
+                            </items>
+                        </ComboBox>
+                        <!-- <Input id="StocLoc" width="100%" value="" liveChange="ValidateErrorFun"/> -->
+                        <Label id="ReceivingLab" design="Bold" text="Receiving Sloc."  required="true"/>
+                        <ComboBox items="{path : '/storage_loc1',length : '100000'}" showSecondaryValues="true" change="ValidateErrorFun" id="ReceivingSloc">
+                            <items>
+                                <core:ListItem id="a5" text="{StorageLocation}" key="{StorageLocation}" additionalText="{StorageLocationName}"/>
+                            </items>
+                        </ComboBox>
+                        <!-- <Input id="ReceivingSloc" width="100%" value="" liveChange="ValidateErrorFun"/> -->
+                        <core:Title id="Coretitle4"/>
+
+
+                        <Label id="PiecesLab" design="Bold" text="No. of Pieces" />
+                        <Input id="NoOfPieces" width="100%" value="" editable="false" liveChange="ValidateErrorFun"/>
+                        <Label id="TotalLab" design="Bold" text="Total Qty" />
+                        <Input id="TotalQty" width="100%" value="" editable="false" liveChange="ValidateErrorFun"/>
+                        <Label id="ShiftLab" design="Bold" text="Shift" />
+                        <ComboBox id="Shift" change="" width="100%" selectedKey="Option1">
+                            <items>
+                                <core:Item key= "Option1" id="com1" text="A"/>
+                                <core:Item key= "Option2" id="com2" text="B" />
+                                <core:Item key= "Option3" id="com3" text="C" />
+                            </items>
+                        </ComboBox>
+                        <Label id="SetLab" design="Bold" text="Set No" required="true" />
+                        <!-- <Input id="SetNumber" width="100%" submit="SetNumbersFunction" liveChange="ValidateErrorFun"/> -->
+                        <ComboBox id="SetNumber" items="{path:'oSetnoModel>/aSetno', length:'50000'}" change="SetNumbersFunction" width="100%" selectedKey="Option1">
+                            <items>
+                                <core:ListItem id="a6" text="{oSetnoModel>SetNo}" ></core:ListItem>
+                                <!-- <core:Item key= "Option1" text="A"/>
+                                <core:Item key= "Option2" text="B" />
+                                <core:Item key= "Option3" text="C" /> -->
+                            </items>
+                        </ComboBox>
+                        <!-- <core:Title id="Coretitle5"/> -->
+
+
+
+
+                    </f:content>
+                </f:SimpleForm>
+            </Panel>
+            <Panel id="Panel2">
+                <T:Table id="table1" rows="{oTableDataModel>/aTableData}" editable="true" selectionBehavior="RowSelector">
+                    <T:extension>
+                        <OverflowToolbar id="oftb" style="Clear">
+                            <ToolbarSpacer id="tbs"/>
+                            <Button id="Button1" icon="sap-icon://save" text=" Save" press="SaveTableData"/>
+                            <Button id="Button2" icon="sap-icon://delete" text=" Delete" press="DeletaTableData"/>
+                        </OverflowToolbar>
+                    </T:extension>
+                    <T:columns>
+                        <T:Column id="tc1" width="100%">
+                            <Label id="label1" text="Plant"/>
+                            <T:template>
+                                <Input editable="false" id="input1" value="{oTableDataModel>Plant}"/>
+                            </T:template>
+                        </T:Column>
+                        <T:Column id="tc2" width="100%">
+                            <Label id="label2" text="Material"/>
+                            <T:template>
+                                <Input editable="false" id="input2" value="{oTableDataModel>Material}"/>
+                            </T:template>
+                        </T:Column>
+                        <T:Column id="tc3" width="100%">
+                            <Label id="label3" text="Material Desc"/>
+                            <T:template>
+                                <Input editable="false" id="input3" value="{oTableDataModel>ProductDescription}"/>
+                            </T:template>
+                        </T:Column>
+                        <T:Column id="tc4" width="100%">
+                            <Label id="label4" text="Batch"/>
+                            <T:template>
+                                <Input editable="false" id="input4" value="{oTableDataModel>Batch}"/>
+                            </T:template>
+                        </T:Column>
+                        <T:Column id="tc5" width="100%">
+                            <Label id="label5" text="Mtr."/>
+                            <T:template>
+                                <Input editable="false" id="input5" value="{oTableDataModel>MatlWrhsStkQtyInMatlBaseUnit}"/>
+                            </T:template>
+                        </T:Column>
+                        <T:Column id="tc6" width="100%">
+                            <Label id="label6" text="Uom"/>
+                            <T:template>
+                                <Input editable="false" id="input6" value="{oTableDataModel>MaterialBaseUnit}"/>
+                            </T:template>
+                        </T:Column>
+                        <T:Column id="tc7" width="100%">
+                            <Label id="label7" text="Sales Order"/>
+                            <T:template>
+                                <Input editable="false" id="input7" value="{oTableDataModel>SDDocument}"/>
+                            </T:template>
+                        </T:Column>
+                        <T:Column id="tc8" width="100%">
+                            <Label id="label8" text="So Item"/>
+                            <T:template>
+                                <Input editable="false" id="input8" value="{oTableDataModel>SDDocumentItem}"/>
+                            </T:template>
+                        </T:Column>
+                        <T:Column id="tc9" width="100%">
+                            <Label id="label9" text="Remark"/>
+                            <T:template>
+                                <Input editable="true" id="input9" value="{oTableDataModel>Remark}"/>
+                            </T:template>
+                        </T:Column>
+                    </T:columns>
+                </T:Table>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

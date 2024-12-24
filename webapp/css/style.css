@@ -1,0 +1,4 @@
+/* Enter your custom styles here */
+div[id*='FirstSimpleForm'] div h5 {   
+    display: none !important;
+}

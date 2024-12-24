@@ -1,0 +1,55 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog id="ourTable"
+		noDataText="Operator Name Not Found"
+		title="Select Operator Name"
+		search=".handleSearch"
+		searchPlaceholder="Search Operator Name"
+		confirm=".handleValueHelpClose"
+		cancel=".handleValueHelpClose"
+		showClearButton="true"
+		items="{
+			path : '/OPTNAME'
+		}">
+		<ColumnListItem id="columnlistitem" selected="{selected}">
+			<cells>
+				<ObjectIdentifier id="Oif1" title="{Bukrs}"/>
+				<ObjectIdentifier id="Oif2" title="{Plant}"/>
+				<ObjectIdentifier id="Oif3" title="{Empcode}"/>
+				<ObjectIdentifier id="Oif4" title="{Empname}"/>
+				<ObjectIdentifier id="Oif5" title="{Deptname}"/>
+				<!-- <Text text="{SupplierName}" />
+				<Text text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column id="Column1" width="6rem">
+				<header>
+					<Text id="Text1" text="Bukrs" />
+				</header>
+			</Column>
+			<Column id="Column2" width="6rem">
+				<header>
+					<Text id="Text2" text="Plant" />
+				</header>
+			</Column>
+			<Column id="Column3" width="6rem" >
+                <header>
+                    <Text id="Text3" text="Empcode" />
+                </header>
+            </Column>
+                
+			<Column id="Column4" width="6rem">
+				<header>
+					<Text id="Text4" text="Empname" />
+				</header>
+			</Column>
+			<Column id="Column5" width="6rem">
+				<header>
+					<Text id="Text5" text="Deptname" />
+				</header>
+			</Column>
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>
